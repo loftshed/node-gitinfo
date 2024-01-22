@@ -1,11 +1,12 @@
-'use strict'
-var spawn = require('child_process').spawn;
+import { spawn } from 'child_process';
 
 /* test utility methods */
 
-exports.deleteFilesRecursivelyByName = function(appRootDir, fileName) {
-    var shellSyntaxCommand = 'find ' + appRootDir + ' -name ' + fileName + ' -type f|xargs rm -f';
-    spawn('sh', ['-c', shellSyntaxCommand], {stdio: 'inherit'});
-}
+const deleteFilesRecursivelyByName = (appRootDir, fileName) => {
+  const shellSyntaxCommand = `find ${appRootDir} -name ${fileName} -type f | xargs rm -f`;
+  spawn('sh', ['-c', shellSyntaxCommand], { stdio: 'inherit' });
+};
+
+export { deleteFilesRecursivelyByName };
 
 /* end test utility methods */

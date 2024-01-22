@@ -1,23 +1,30 @@
-# Node Git Info
+# node-gitinfo
 
-[![npm version](https://img.shields.io/npm/v/node-git-info.svg?style=flat)](https://badge.fury.io/js/node-git-info)
-[![Build Status](https://travis-ci.org/rcruzper/node-git-info.svg?branch=master)](https://travis-ci.org/rcruzper/node-git-info)
-[![Coverage Status](https://coveralls.io/repos/github/rcruzper/node-git-info/badge.svg?branch=master)](https://coveralls.io/github/rcruzper/node-git-info?branch=master)
-[![Dependencies Status](https://david-dm.org/rcruzper/node-git-info.svg)](https://david-dm.org/rcruzper/node-git-info)
-
-Node module that creates a git.properties file with information about the current commit. It is based on [maven git commit id plugin](https://github.com/ktoso/maven-git-commit-id-plugin) for Java.
+Node module that creates a `git.properties` file with information about the current commit. A modernized fork of Raúl Cruz's [node-git-info](https://github.com/rcruzper/node-git-info), which itself is based on [maven git commit id plugin](https://github.com/ktoso/maven-git-commit-id-plugin) for Java.
 
 ## Usage
 
+Install `node-gitinfo` globally using npm:
+
 ```sh
-$ npm install -g node-git-info
-$ node-git-info [options]
-
--d, --directory     Directory to save git.properties file to (directory must already exist).
+npm install -g node-gitinfo
 ```
-It will save a file named ```git.properties```. If the directory option isn't passed, then default location for saving the git.properties file will be the current working directory of the Node.js process.
 
-Example output:
+To generate the `git.properties` file, run:
+
+```sh
+node-gitinfo [options]
+```
+
+Options:
+
+- `-d, --directory <path>`: Specify the directory where the `git.properties` file will be saved. The directory must already exist.
+- If the directory option is not provided, the `git.properties` file will be saved in the current working directory of the Node.js process.
+
+### Example Output
+
+The `git.properties` file will contain information similar to the following:
+
 ```ini
 git.commit.id.abbrev=42954d1
 git.commit.user.email=user@email.com

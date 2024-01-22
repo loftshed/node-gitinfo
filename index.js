@@ -1,32 +1,34 @@
-'use strict';
-var gitProperties = require('./lib/gitProperties');
-var commandLineArgs = require('command-line-args')
+const gitProperties = require('./lib/gitProperties.js');
 
-// library's entry point
-var execute = function () {
+/**
+ * Processes command line arguments starting from the third argument.
+ * @returns {Object} The options object with the directory path if provided.
+ */
+const processArguments = () => {
+  const args = process.argv.slice(2);
+  const options = {};
 
-    // define allows command line arguments when calling library
-    const optionDefinitions = [
-        {name: 'directory', alias: 'd', type: String}
-    ]
-
-    // convert command line arguments to object
-    const options = commandLineArgs(optionDefinitions);
-
-    // define callback function to call when git.properties file has been written or when an error doing so occurs.
-    var callback = function (writeSuccess) {
-        if (writeSuccess) {
-            //exit with a 'success' code
-            process.exit(0);
-        } else {
-            //exit with a 'failure' code
-            process.exit(1);
-        }
+  args.forEach((arg, index, array) => {
+    if (arg.startsWith('-d') || arg.startsWith('--directory')) {
+      options.directory = array[index + 1];
     }
+  });
 
-    // write git.properties file
-    gitProperties.write(options.directory, callback);
-}
+  return options;
+};
+
+const onWriteComplete = (writeSuccess) => {
+  process.exit(writeSuccess ? 0 : 1);
+};
+
+/**
+ * Executes the main functionality of the script.
+ * It processes command line arguments to configure options and writes the git.properties file.
+ */
+const execute = function () {
+  const options = processArguments();
+  gitProperties.write(options.directory, onWriteComplete);
+};
 
 execute();
 

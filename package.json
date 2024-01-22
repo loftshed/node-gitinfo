@@ -1,5 +1,5 @@
 {
-  "name": "node-git-info",
+  "name": "node-gitinfo",
   "version": "1.1.0",
   "description": "Creates a git.properties file with git information of the current commit",
   "files": [
@@ -11,41 +11,30 @@
   ],
   "main": "index.js",
   "bin": {
-    "node-git-info": "bin/node-git-info"
+    "node-git-info": "bin/node-gitinfo"
   },
   "devDependencies": {
-    "app-root-dir": "1.0.2",
-    "chai": "3.5.0",
-    "coveralls": "2.11.15",
-    "eslint": "3.10.2",
+    "eslint": "8.56.0",
     "istanbul": "0.4.5",
-    "mocha": "3.1.2",
-    "mock-fs": "3.12.1",
-    "sinon": "1.17.6",
-    "sinon-chai": "2.8.0",
-    "tmp": "0.0.31",
-    "utils-fs-read-properties": "1.0.0"
+    "jest": "^29.7.0"
   },
   "scripts": {
     "start": "node index.js",
-    "test:unit": "istanbul test _mocha -- test/unit --reporter spec --recursive",
+    "test:unit": "jest --coverage",
     "pretest": "eslint .",
-    "test": "npm run test:unit --coverage",
-    "posttest": "npm run check-coverage",
-    "check-coverage": "istanbul check-coverage --statement 75 --branch 50 --function 100 --lines 75",
-    "coveralls": "cat ./build/coverage/lcov.info | coveralls"
+    "test": "npm run test:unit"
   },
   "author": "Raúl Cruz <rcruzper@gmail.com>",
+  "contributors": [
+    "Pete Löfstedt <pete.lofstedt@gmail.com>"
+  ],
   "license": "MIT",
-  "dependencies": {
-    "bluebird": "3.4.6",
-    "child-process-promise": "2.2.0",
-    "command-line-args": "3.0.3",
-    "moment": "2.16.0"
+  "engines": {
+    "node": ">=14.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/rcruzper/node-git-info.git"
+    "url": "git://github.com/loftshed/node-gitinfo.git"
   },
   "keywords": [
     "git",
